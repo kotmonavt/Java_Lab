@@ -14,11 +14,12 @@ public class Lab1 {
             System.out.println("Point"+ i +": ("+ newPoint[i].getX() +", "+ newPoint[i].getY() +", "+ newPoint[i].getZ() +")");
         }
         // Вывод результата подсчета, если точки не совпадают, и вывод ошибки, если совпадают
-        if (equalPoints(newPoint[0], newPoint[1], newPoint[2])) {
+        if (checkEqualPoints(newPoint[0], newPoint[1], newPoint[2])) {
             System.out.println("Area of a treangle = " + computeArea(newPoint[0], newPoint[1], newPoint[2]));
         } else {
             System.out.println("Please, check your Point coord");
         }
+
     }
     // вычисление площади треугольника
     public static double computeArea(Point3d pL1, Point3d pL2, Point3d pL3) {
@@ -26,17 +27,12 @@ public class Lab1 {
         double b = pL2.distanceTo(pL3); // сторона b
         double c = pL3.distanceTo(pL1); // сторона c
         double halfMeter = (a + b + c) / 2; // вычисление полупериметра треугольника
-        return (Math.sqrt(halfMeter*(halfMeter - a)*(halfMeter - b)*(halfMeter - c))); //возвращение площади
+        return (Math.sqrt(halfMeter * (halfMeter - a) * (halfMeter - b) * (halfMeter - c))); //возвращение площади
 
     }
     // проверка точек на равенство (совпадение)
-    public static boolean equalPoints(Point3d p1, Point3d p2, Point3d p3) {
-        if (((p1.getX() == p2.getX()) && (p1.getY() == p2.getY()) && (p1.getZ() == p2.getZ())) ||
-                ((p3.getX() == p2.getX()) && (p3.getY() == p2.getY()) && (p3.getZ() == p2.getZ())) ||
-                ((p1.getX() == p3.getX()) && (p1.getY() == p3.getY()) && (p1.getZ() == p3.getZ()))) {
-            return false;
-        } else {
-            return true;
+    public static boolean checkEqualPoints(Point3d p1, Point3d p2, Point3d p3) {
+        return !(p1.equalsPoints(p2) || p1.equalsPoints(p3) || p2.equalsPoints(p3));
         }
-    }
+
 }
