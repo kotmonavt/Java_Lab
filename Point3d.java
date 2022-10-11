@@ -18,7 +18,7 @@ class Point3d extends Point2d {
     // установка значения координаты z
     public void setZ ( double val) {
 
-        this.z = z;
+        z = val;
 
     }
     // метод для подсчета расстояния между точками
